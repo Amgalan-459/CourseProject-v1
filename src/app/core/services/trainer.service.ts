@@ -11,18 +11,18 @@ export class TrainerService {
   constructor(private http: HttpClient) {}
 
   async getAllTrainers() : Promise<TrainerData[]>{
-    return await firstValueFrom( this.http.get<TrainerData[]>('http://192.168.1.72:5000/api/trainer/all') );
+    return await firstValueFrom( this.http.get<TrainerData[]>('http://192.168.1.64:5000/api/trainer/all') );
   }
 
   async getTrainerById(id: number) : Promise<TrainerData> {
-    return await firstValueFrom( this.http.get<TrainerData>('http://192.168.1.72:5000/api/trainer/' + id) ); 
+    return await firstValueFrom( this.http.get<TrainerData>('http://192.168.1.64:5000/api/trainer/' + id) ); 
   }
 
   async postTrainer(trainer: TrainerData) : Promise<TrainerData> {
-    return await firstValueFrom( this.http.post<TrainerData>('http://192.168.1.72:5000/api/trainer', trainer) ); 
+    return await firstValueFrom( this.http.post<TrainerData>('http://192.168.1.64:5000/api/trainer', trainer) ); 
   }
 
   async deleteTrainer(id: number) : Promise<TrainerData> {
-    return await firstValueFrom( this.http.delete<TrainerData>('http://192.168.1.72:5000/api/trainer/' + id) ); 
+    return await firstValueFrom( this.http.delete<TrainerData>('http://192.168.1.64:5000/api/trainer/' + id) ); 
   }
 }

@@ -5,6 +5,7 @@ export interface TrainerData {
     name: string,
     surname: string,
     email: string,
-    passworf: string,
+    password: string,
+    isActive: boolean,
     trainees: TraineeData[]
 }

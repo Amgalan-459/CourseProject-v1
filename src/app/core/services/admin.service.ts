@@ -11,18 +11,18 @@ export class AdminService {
   constructor(private http: HttpClient) {}
 
   async getAllAdmins() : Promise<AdminData[]>{
-    return await firstValueFrom( this.http.get<AdminData[]>('http://192.168.1.72:5000/api/admin/all') );
+    return await firstValueFrom( this.http.get<AdminData[]>('http://192.168.1.64:5000/api/admin/all') );
   }
 
   async getAdminById(id: number) : Promise<AdminData> {
-    return await firstValueFrom( this.http.get<AdminData>('http://192.168.1.72:5000/api/admin/' + id) ); 
+    return await firstValueFrom( this.http.get<AdminData>('http://192.168.1.64:5000/api/admin/' + id) ); 
   }
 
   async postAdmin(admin: AdminData) : Promise<AdminData> {
-    return await firstValueFrom( this.http.post<AdminData>('http://192.168.1.72:5000/api/admin', admin) ); 
+    return await firstValueFrom( this.http.post<AdminData>('http://192.168.1.64:5000/api/admin', admin) ); 
   }
 
   async deleteAdmin(id: number) : Promise<AdminData> {
-    return await firstValueFrom( this.http.delete<AdminData>('http://192.168.1.72:5000/api/admin/' + id) ); 
+    return await firstValueFrom( this.http.delete<AdminData>('http://192.168.1.64:5000/api/admin/' + id) ); 
   }
 }

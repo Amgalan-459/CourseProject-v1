@@ -11,18 +11,18 @@ export class ExerciseRawService {
   constructor(private http: HttpClient) {}
 
   async getAllExerciseRaws() : Promise<ExerciseRawData[]>{
-    return await firstValueFrom( this.http.get<ExerciseRawData[]>('http://192.168.1.72:5000/api/exerciseraw/all') );
+    return await firstValueFrom( this.http.get<ExerciseRawData[]>('http://192.168.1.64:5000/api/exerciseraw/all') );
   }
 
   async getExerciseRawById(id: number) : Promise<ExerciseRawData> {
-    return await firstValueFrom( this.http.get<ExerciseRawData>('http://192.168.1.72:5000/api/exerciseraw/' + id) ); 
+    return await firstValueFrom( this.http.get<ExerciseRawData>('http://192.168.1.64:5000/api/exerciseraw/' + id) ); 
   }
 
   async postExerciseRaw(exerciseRaw: ExerciseRawData) : Promise<ExerciseRawData> {
-    return await firstValueFrom( this.http.post<ExerciseRawData>('http://192.168.1.72:5000/api/exerciseraw', exerciseRaw) ); 
+    return await firstValueFrom( this.http.post<ExerciseRawData>('http://192.168.1.64:5000/api/exerciseraw', exerciseRaw) ); 
   }
 
   async deleteExerciseRaw(id: number) : Promise<ExerciseRawData> {
-    return await firstValueFrom( this.http.delete<ExerciseRawData>('http://192.168.1.72:5000/api/exerciseraw/' + id) ); 
+    return await firstValueFrom( this.http.delete<ExerciseRawData>('http://192.168.1.64:5000/api/exerciseraw/' + id) ); 
   }
 }

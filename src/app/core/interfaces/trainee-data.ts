@@ -7,6 +7,7 @@ export interface TraineeData {
     surname: string,
     email: string,
     countOfTrainsInWeek: number,
+    isActive: boolean,
     trainerId: number,
     trainer: TrainerData,
     workouts: WorkoutData[]
