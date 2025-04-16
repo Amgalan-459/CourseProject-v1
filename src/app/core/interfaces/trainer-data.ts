@@ -6,6 +6,8 @@ export interface TrainerData {
     surname: string,
     email: string,
     password: string,
+    phoneNumber: string | null,
+    sex: number,
     isActive: boolean,
     trainees: TraineeData[]
 }

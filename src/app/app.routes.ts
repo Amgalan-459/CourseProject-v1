@@ -3,11 +3,13 @@ import { HomeComponent } from './user/pages/home/home.component';
 import { AboutUsComponent } from './user/pages/about-us/about-us.component';
 import { SignUpComponent } from './user/pages/auth/sign-up/sign-up.component';
 import { LogInComponent } from './user/pages/auth/log-in/log-in.component';
+import { ProfileComponent } from './user/pages/profile/profile.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'aboutUs', component: AboutUsComponent },
     { path: 'auth/signUp', component: SignUpComponent },
     { path: 'auth/logIn', component: LogInComponent },
+    { path: "profile", component: ProfileComponent },
     { path: '**', redirectTo: 'home' }
 ];

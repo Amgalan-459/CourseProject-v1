@@ -24,4 +24,54 @@ export class AppComponent {
       })
     });
   }
+
+  async getTrainee() : Promise<TraineeData> {
+    this.trainee = await this.traineeService.getTraineeById(1);
+    return this.trainee;
+  }
+
+  /*
+  public bool ValidatePassword(string password)
+{
+    string errorMessage = string.Empty;
+    bool allowed = false;
+
+    var hasNumber = new Regex(@"[0-9]+");
+    var hasUpperChar = new Regex(@"[A-Z]+");
+    var hasMiniMaxChars = new Regex(@".{8,15}");
+    var hasLowerChar = new Regex(@"[a-z]+");
+    var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
+
+    if (password is null || string.IsNullOrWhiteSpace(password))
+    {
+        errorMessage = "Password should not be empty";
+    }
+    else if (!hasLowerChar.IsMatch(password))
+    {
+        errorMessage = "Password should contain At least one lower case letter";
+    }
+    else if (!hasUpperChar.IsMatch(password))
+    {
+        errorMessage = "Password should contain At least one upper case letter";
+    }
+    else if (!hasMiniMaxChars.IsMatch(password))
+    {
+        errorMessage = "Password should not be less than or greater than 12 characters";
+    }
+    else if (!hasNumber.IsMatch(password))
+    {
+        errorMessage = "Password should contain At least one numeric value";
+    }
+    else if (!hasSymbols.IsMatch(password))
+    {
+        errorMessage = "Password should contain At least one special case characters";
+    }
+    else
+    {
+        allowed = true;
+    }
+
+    return allowed;
+}
+  */
 }

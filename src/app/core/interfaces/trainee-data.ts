@@ -6,6 +6,8 @@ export interface TraineeData {
     name: string,
     surname: string,
     email: string,
+    phoneNumber: string | null,
+    sex: number,
     countOfTrainsInWeek: number,
     isActive: boolean,
     trainerId: number,
