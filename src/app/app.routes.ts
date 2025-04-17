@@ -4,6 +4,7 @@ import { AboutUsComponent } from './user/pages/about-us/about-us.component';
 import { SignUpComponent } from './user/pages/auth/sign-up/sign-up.component';
 import { LogInComponent } from './user/pages/auth/log-in/log-in.component';
 import { ProfileComponent } from './user/pages/profile/profile.component';
+import { WorkoutsComponent } from './user/pages/workouts/workouts.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -11,5 +12,6 @@ export const routes: Routes = [
     { path: 'auth/signUp', component: SignUpComponent },
     { path: 'auth/logIn', component: LogInComponent },
     { path: "profile", component: ProfileComponent },
+    { path: 'workouts', component: WorkoutsComponent },
     { path: '**', redirectTo: 'home' }
 ];
