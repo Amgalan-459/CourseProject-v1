@@ -1,1 +1,171 @@
-<p>home works!</p>
+<!-- 
+Если вошел в аккаунт, то показываем, если нет, то показываем начальную страницу -->
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+
+<!--Здесь типо мотивация-->
+<section style="background-color: #eee;">
+    <div class="container py-5">  
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <h2 class="my-3">Физическая активность усиливает позитивную энергию!</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            @for(motivation of speeches; track $index){          
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="my-3">{{motivation}}</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+  <!--здесь переход сразу к предстоящей тренировке -->
+<section style="background-color: white">
+    <div class="container py-5">  
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <div class="card-body text-center">
+                        <h2 class="my-3">Goto workout</h2>
+                    </div>
+
+                    <div class="card-body text-center">
+                        <a class="site-btn" routerLink="/workouts">Let's go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background-color: #eee;">
+    <div class="container py-5">  
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <h2 class="my-3" style="color: sandybrown;">123</h2>
+              <h4 class="my-3">Happy clients</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="card mb-4">
+              <div class="card-body text-center">
+                <h2 class="my-3" style="color: sandybrown;">32</h2>
+                <h4 class="my-3">Strong bodies</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="card mb-4">
+              <div class="card-body text-center">
+                <h2 class="my-3" style="color: sandybrown;">1000</h2>
+                <h4 class="my-3">Followers</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="card mb-4">
+              <div class="card-body text-center">
+                <h2 class="my-3" style="color: sandybrown;">24/7</h2>
+                <h4 class="my-3">Working hours</h4>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section style="background-color: white">
+    <div class="container py-5">  
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-body text-center">
+                    <h2 class="my-3">Calculate your BMI</h2>
+                    <p>Helps you to improve your health</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 offset-lg-4">
+                <div class="card mb-4" style="background-color: black;">
+                    <div class="card-body text-center">
+                        <form class="row">
+                            <div class="col-sm-12">
+                                <input type="text" placeholder="Weight (KG)" id="bmi-weight">
+                            </div>
+                            <hr>
+                            <div class="col-sm-12">
+                                <input type="text" placeholder="Hight (M)" id="bmi-hight">
+                            </div>
+                            <hr>
+                            <div class="col-sm-12">
+                                <button class="site-btn" id="bmi-submit">Calculate</button>
+                            </div>
+                            <hr>
+                            <div class="col-sm-12">
+                                <input type="text" id="bmi-result" placeholder="results..." readonly>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  
+<!-- Footer section -->
+<footer class="footer-section set-bg" style="background-color: black;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="footer-widget">
+                    <h4>Subscriptions</h4>
+                    <div class="fw-info-box">
+                        <p>8 926 433 67 88</p>
+                        <p>+1 (603)535-4556</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="footer-widget">
+                    <h4>E-mail</h4>
+                    <div class="fw-info-box">
+                        <p>amborgolov&#64;mail.ru</p>
+                        <p>www.example.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="footer-widget">
+                    <h4>Social Media</h4>
+                    <div class="fw-info-box">
+                        <div class="social-links">
+                            <a href="#">GitHub</a>
+                            <br>
+                            <a href="#">Google play</a>
+                            <br>
+                            <a href="#">RuStore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
