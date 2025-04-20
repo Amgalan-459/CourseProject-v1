@@ -19,6 +19,10 @@ export class WorkoutService {
     return await firstValueFrom( this.http.get<WorkoutData>(environment.apiUrl + '/api/workout/' + id) ); 
   }
 
+  async getWorkoutsByTraineeId(id: number) : Promise<WorkoutData[]> {
+    return await firstValueFrom( this.http.get<WorkoutData[]>(environment.apiUrl + '/api/workout/trainee/' + id) );
+  }
+
   async postWorkout(workout: WorkoutData) : Promise<WorkoutData> {
     return await firstValueFrom( this.http.post<WorkoutData>(environment.apiUrl + '/api/workout', workout) ); 
   }

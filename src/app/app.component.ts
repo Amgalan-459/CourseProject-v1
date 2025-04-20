@@ -15,14 +15,14 @@ export class AppComponent {
   trainee: TraineeData | null = null;
 
   constructor(private traineeService: TraineeService, private trainerService: TrainerService) {
-    traineeService.getAllTrainees().then(res => {
-      console.log(res);
-      this.trainee = res[0];
+    // traineeService.getAllTrainees().then(res => {
+    //   console.log(res);
+    //   this.trainee = res[0];
 
-      trainerService.getTrainerById(this.trainee.trainerId).then(res => {
-        console.log(res);
-      })
-    });
+    //   trainerService.getTrainerById(this.trainee.trainerId).then(res => {
+    //     console.log(res);
+    //   })
+    // });
   }
 
   async getTrainee() : Promise<TraineeData> {

@@ -9,7 +9,7 @@
             <div class="card-body text-center">
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">Борголов Амгалан</h5>
+              <h5 class="my-3">{{ trainee?.name + " " + trainee?.surname}}</h5>
             </div>
           </div>
           <div class="card mb-4">
@@ -19,7 +19,7 @@
                   <p class="mb-0">Full Name</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Борголов Амгалан Вячеславович</p>
+                  <p class="text-muted mb-0">{{ trainee?.name + " " + trainee?.surname}}</p>
                 </div>
               </div>
               <hr>
@@ -28,7 +28,7 @@
                   <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">example</p>
+                  <p class="text-muted mb-0">{{ trainee?.email}}</p>
                 </div>
               </div>
               <hr>
@@ -37,16 +37,16 @@
                   <p class="mb-0">Phone</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">8 926 433 67 88</p>
+                  <p class="text-muted mb-0">{{trainee?.phoneNumber}}</p>
                 </div>
               </div>
               <hr>
               <div class="row">
                 <div class="col-sm-3">
-                  <p class="mb-0">Count of traines</p>
+                  <p class="mb-0">Count of trains</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">2</p>
+                  <p class="text-muted mb-0">{{trainee?.countOfTrainsInWeek}}</p>
                 </div>
               </div>
               <hr>
@@ -55,7 +55,15 @@
                   <p class="mb-0">Пол</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Мужской</p>
+                    @if (trainee?.sex == 0){
+                        <p class="text-muted mb-0">Не указано</p>
+                    }
+                    @else if (trainee?.sex == 1) {
+                        <p class="text-muted mb-0">Мужской</p>
+                    }
+                    @else {
+                        <p class="text-muted mb-0">Женский</p>
+                    }
                 </div>
               </div>
             </div>
