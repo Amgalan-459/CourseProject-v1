@@ -12,6 +12,7 @@ import { ExerciseData } from '../../../core/interfaces/exercise-data';
   styleUrl: './workout.component.css'
 })
 export class WorkoutComponent {
+
   id: number;
   workout: WorkoutData | null = null;
   exercises: ExerciseData[] = [];
@@ -21,8 +22,33 @@ export class WorkoutComponent {
       this.workout = res
       this.httpExercise.getExercisesByWorkoutId(this.workout!.id).then(res => {
         this.exercises = res
-        console.log(this.exercises);
       });
+    });
+  }
+
+  async saveChanges() {
+    for (let i = 0; i < this.exercises.length; i++) {
+      await this.httpExercise.postExercise(this.exercises[i]).then(res => console.log(res));
+    }
+  }
+
+  onChangeRep(exerciseId: number, index: number, $event: Event) {
+    let value = ($event.target as HTMLInputElement).value
+    let repF = []
+    let exercises = this.exercises.find(ex => ex.id == exerciseId)!;
+    for (let i = 0; i < exercises.repPlan.length; i++) {
+      if (i == index){
+        repF.push(Number(value))
+      }
+      else {
+        repF.push(exercises.repFact[i])
+      }
+    }
+    this.exercises.map(ex => {
+      if (ex.id == exerciseId) {
+        ex.repFact = repF
+      }
+      return ex;
     });
   }
 }
