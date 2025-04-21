@@ -1,0 +1,23 @@
+ul{
+    list-style-type: none;
+}
+
+.text-plan, .text-fact {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    text-align: center;
+    font-weight: 600;
+}
+
+.url{
+    max-width: 200px;
+    text-wrap: wrap;
+    word-wrap: break-word;
+    width: 20vh;
+}
+
+input {
+    border: none;
+    background: none;
+    outline: none;
+}
