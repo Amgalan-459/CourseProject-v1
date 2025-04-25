@@ -23,6 +23,7 @@ export class TraineesComponent {
         this.isTrainer = true
         this.trainer = storageService.getUser() as TrainerData
         this.httpTrainee.getTraineesByTrainerId(this.trainer.id).then(res => this.trainees = res);
+        console.log(this.trainees)
       }
       else {
         window.location.replace("/home");

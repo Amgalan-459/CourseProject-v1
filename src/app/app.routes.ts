@@ -20,7 +20,6 @@ export const routes: Routes = [
     { path: 'workouts/:id', component: WorkoutComponent },
     { path: 'trainees', component: TraineesComponent },
     { path: 'trainees/:traineeId', component: TraineeComponent },
-    { path: 'trainees/:traineeId/workouts', component: WorkoutsComponent },
     { path: 'help', component: HelpComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', redirectTo: 'home' }

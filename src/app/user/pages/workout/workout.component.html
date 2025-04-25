@@ -21,13 +21,25 @@
                                 <td rowspan="2" class="text-plan">план</td>
                                 <td>кг</td>
                                 @for (weightP of exercise.weightPlan; track weightP) {
-                                    <td>{{weightP}}</td>
+                                    @if (this.isTrainer){                                        
+                                        <td> 
+                                            <input type="text" value="{{weightP}}" class="form-control" (change)="onChangeWeightP(exercise.id, $index, $event)">
+                                        </td>
+                                    }@else {
+                                        <td>{{ weightP }}</td>
+                                    }
                                 }
                             </tr>
                             <tr>
                                 <td>раз</td>
                                 @for (repP of exercise.repPlan; track repP) {
-                                    <td>{{repP}}</td>
+                                    @if (this.isTrainer){
+                                        <td>
+                                            <input type="text" value="{{repP}}" class="form-control" (change)="onChangeRepP(exercise.id, $index, $event)">                                        
+                                        </td>
+                                    }@else {
+                                        <td>{{ repP }}</td>
+                                    }
                                 }
                             </tr>
                             <tr>
@@ -35,7 +47,7 @@
                                 <td>кг</td>
                                 @for (weightF of exercise.weightFact; track $index) {
                                     <td> 
-                                        <input type="text" value="{{weightF}}" class="form-control" (change)="onChangeWeight(exercise.id, $index, $event)">
+                                        <input type="text" value="{{weightF}}" class="form-control" (change)="onChangeWeightF(exercise.id, $index, $event)">
                                     </td>
                                 }
                             </tr>
@@ -43,7 +55,7 @@
                                 <td>раз</td>
                                 @for (repF of exercise.repFact; track $index) {
                                     <td>
-                                        <input type="text" value="{{repF}}" class="form-control" (change)="onChangeRep(exercise.id, $index, $event)">                                        
+                                        <input type="text" value="{{repF}}" class="form-control" (change)="onChangeRepF(exercise.id, $index, $event)">                                        
                                     </td>
                                 }
                             </tr>
@@ -51,7 +63,13 @@
                         <tfoot>
                             <tr>
                                 <th>Описание</th>
-                                <th colspan="8">{{ exercise.description }}</th>
+                                @if (this.isTrainer){                                    
+                                    <th colspan="8">
+                                        <input type="text" value="{{ exercise.description }}" class="form-control" (change)="onChangeDescription(exercise.id, $event)">
+                                    </th>
+                                } @else {
+                                    <th colspan="8">{{ exercise.description }}</th>
+                                }
                             </tr>
                         </tfoot>
                     </table>

@@ -30,6 +30,20 @@ export class WorkoutComponent {
       if (storageService.getIsTrainer()){
         this.isTrainer = true
         this.trainer = storageService.getUser() as TrainerData
+        let traineeId = Number(localStorage.getItem('traineeId')!);
+        httpWorkout.getWorkoutsByTraineeId(traineeId).then(res => {
+          let workout = res.find(workout => workout.id == this.id)
+          if (!workout) {
+            alert("Тренировка не найдена");
+            window.location.replace("/workouts");
+          }
+        });
+        this.httpWorkout.getWorkoutById(this.id).then(res => {
+          this.workout = res
+          this.httpExercise.getExercisesByWorkoutId(this.workout!.id).then(res => {
+            this.exercises = res
+          });
+        });
       }
       else {
         this.trainee = storageService.getUser() as TraineeData 
@@ -60,7 +74,7 @@ export class WorkoutComponent {
     alert("Изменения сохранены");
   }
 
-  onChangeRep(exerciseId: number, index: number, $event: Event) {
+  onChangeRepF(exerciseId: number, index: number, $event: Event) {
     let value = ($event.target as HTMLInputElement).value
     let repF = []
     let exercises = this.exercises.find(ex => ex.id == exerciseId)!;
@@ -80,7 +94,7 @@ export class WorkoutComponent {
     });
   }
 
-  onChangeWeight(exerciseId: number, index: number, $event: Event) {
+  onChangeWeightF(exerciseId: number, index: number, $event: Event) {
     let value = ($event.target as HTMLInputElement).value
     let weightF = []
     let exercises = this.exercises.find(ex => ex.id == exerciseId)!;
@@ -95,6 +109,77 @@ export class WorkoutComponent {
     this.exercises.map(ex => {
       if (ex.id == exerciseId) {
         ex.weightFact = weightF
+      }
+      return ex;
+    });
+  }
+
+  //for trainer
+  onChangeRepP(exerciseId: number, index: number, $event: Event) {
+    let value = ($event.target as HTMLInputElement).value
+    let repP = []
+    let exercises = this.exercises.find(ex => ex.id == exerciseId)!;
+    for (let i = 0; i < exercises.repPlan.length; i++) {
+      if (i == index){
+        repP.push(Number(value))
+      }
+      else {
+        repP.push(exercises.repFact[i])
+      }
+    }
+    this.exercises.map(ex => {
+      if (ex.id == exerciseId) {
+        ex.repPlan = repP
+      }
+      return ex;
+    });
+  }
+
+  onChangeWeightP(exerciseId: number, index: number, $event: Event) {
+    let value = ($event.target as HTMLInputElement).value
+    let weightP = []
+    let exercises = this.exercises.find(ex => ex.id == exerciseId)!;
+    for (let i = 0; i < exercises.weightPlan.length; i++) {
+      if (i == index){
+        weightP.push(Number(value))
+      }
+      else {
+        weightP.push(exercises.repFact[i])
+      }
+    }
+    this.exercises.map(ex => {
+      if (ex.id == exerciseId) {
+        ex.weightPlan = weightP
+      }
+      return ex;
+    });
+  }
+
+  onChangeVideoUrl(exerciseId: number, $event: Event) {
+    let value = ($event.target as HTMLInputElement).value
+    this.exercises.map(ex => {
+      if (ex.id == exerciseId) {
+        ex.videoUrl = value
+      }
+      return ex;
+    });
+  }
+
+  onChangeDescription(exerciseId: number, $event: Event) {
+    let value = ($event.target as HTMLInputElement).value
+    this.exercises.map(ex => {
+      if (ex.id == exerciseId) {
+        ex.description = value
+      }
+      return ex;
+    });
+  }
+
+  onChangeName(exerciseId: number, $event: Event) {
+    let value = ($event.target as HTMLInputElement).value
+    this.exercises.map(ex => {
+      if (ex.id == exerciseId) {
+        ex.name = value
       }
       return ex;
     });

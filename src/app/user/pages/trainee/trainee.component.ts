@@ -15,5 +15,6 @@ export class TraineeComponent {
   constructor(private activatedRoute: ActivatedRoute, httpTrainee: TraineeService) {
     this.id = this.activatedRoute.snapshot.params['traineeId'];
     httpTrainee.getTraineeById(this.id).then(res => this.trainee = res);
+    localStorage.setItem('traineeId', this.id.toString());
   }
 }

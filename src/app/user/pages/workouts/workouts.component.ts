@@ -35,8 +35,9 @@ export class WorkoutsComponent {
       if (storageService.getIsTrainer()){
         this.isTrainer = true
         this.trainer = storageService.getUser() as TrainerData
-        //this.traineeId = this.activatedRoute.snapshot.params['traineeId'];
-        console.log(this.activatedRoute.snapshot.params);
+        this.traineeId = Number(localStorage.getItem('traineeId')!);
+        this.httpWorkout.getWorkoutsByTraineeId(this.traineeId).then(res => this.workouts = res);
+        this.httpTrainee.getTraineeById(this.traineeId).then(res => this.trainee = res);
       }
       else {        
         this.trainee = storageService.getUser()! as TraineeData

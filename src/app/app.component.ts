@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
     this.storageService.clean();
     this.isLoggedIn = false;
     this.user = null;
-    window.location.reload();
+    window.location.replace("/auth/logIn");
   }
 
   /*
