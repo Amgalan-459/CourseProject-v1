@@ -3,7 +3,7 @@ import { WorkoutData } from "./workout-data";
 export interface ExerciseData {
     id: number,
     name: string,
-    wieghtPlan: number[],
+    weightPlan: number[],
     repPlan: number[],
     weightFact: number[],
     repFact: number[],

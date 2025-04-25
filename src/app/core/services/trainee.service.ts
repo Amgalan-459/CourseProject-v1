@@ -19,6 +19,14 @@ export class TraineeService {
     return await firstValueFrom( this.http.get<TraineeData>(environment.apiUrl + '/api/trainee/' + id) ); 
   }
 
+  async getTraineeByEmail(email: string) : Promise<TraineeData> {
+    return await firstValueFrom( this.http.get<TraineeData>(environment.apiUrl + '/api/trainee/' + email) ); 
+  }
+
+  async getTraineesByTrainerId(id: number) : Promise<TraineeData[]> {
+    return await firstValueFrom( this.http.get<TraineeData[]>(environment.apiUrl + '/api/trainee/trainer/' + id) );
+  }
+
   async postTrainee(trainee: TraineeData) : Promise<TraineeData> {
     return await firstValueFrom( this.http.post<TraineeData>(environment.apiUrl + '/api/trainee', trainee) ); 
   }

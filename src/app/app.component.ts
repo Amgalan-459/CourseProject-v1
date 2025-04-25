@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { afterNextRender, AfterRenderPhase, ChangeDetectorRef, Component, inject, Injector, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { TraineeService } from './core/services/trainee.service';
+import { StorageService } from './core/services/storage.service';
 import { TraineeData } from './core/interfaces/trainee-data';
-import { TrainerService } from './core/services/trainer.service';
+import { TrainerData } from './core/interfaces/trainer-data';
 
 @Component({
   selector: 'app-root',
@@ -10,24 +10,36 @@ import { TrainerService } from './core/services/trainer.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'CourseProject-v1';
-  trainee: TraineeData | null = null;
-
-  constructor(private traineeService: TraineeService, private trainerService: TrainerService) {
-    traineeService.getAllTrainees().then(res => {
-      console.log(res);
-      this.trainee = res[0];
-
-      trainerService.getTrainerById(this.trainee.trainerId).then(res => {
-        console.log(res);
-      })
-    });
+  injector = inject(Injector);
+  isLoggedIn = false;
+  isTrainer = false;
+  user: TraineeData | TrainerData | null = null;
+  constructor(private cd : ChangeDetectorRef, private storageService: StorageService) {
   }
 
-  async getTrainee() : Promise<TraineeData> {
-    this.trainee = await this.traineeService.getTraineeById(1);
-    return this.trainee;
+  ngOnInit(): void {
+    afterNextRender(() => 
+      this.getUser(),
+    {injector: this.injector, phase: AfterRenderPhase.Read}
+    );
+  }
+
+  getUser() {
+    if (this.storageService.isLoggedIn()){
+      this.isLoggedIn = true;
+      this.user = this.storageService.getUser();
+      this.isTrainer = this.storageService.getIsTrainer();
+      this.cd.detectChanges();
+    }
+  }
+
+  logOut() {
+    this.storageService.clean();
+    this.isLoggedIn = false;
+    this.user = null;
+    window.location.replace("/auth/logIn");
   }
 
   /*
@@ -75,3 +87,4 @@ export class AppComponent {
 }
   */
 }
+

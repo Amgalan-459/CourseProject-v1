@@ -1,34 +1,46 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 
+
+<!--Просмотр его статистики, просмотр тренировок, просмотр профиля-->
+
+<!--Здесь статистика-->
 <section style="background-color: #eee;">
     <div class="container py-5">  
         <div class="row">
             <div class="col-lg-12">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        @if (!this.isTrainer){
-                            <h2 class="my-3">Ваши тренировки!</h2>
-                        } @else {
-                            <h2 class="my-3">Тренировки ученика {{ this.trainee?.surname }} {{this.trainee?.name }}</h2>
-                        }
+                        <h2 class="my-3">Добавить статистику!</h2>
+                        <p>Ученик: {{ this.trainee?.name}} {{ this.trainee?.surname }}</p>
                     </div>
                 </div>
             </div>
         </div>
-        
+
+        <!--здесь переход к просмотру профиля -->
+    </div>
+</section>
+
+  <!--здесь переход к редкатированию тренировок -->
+<section style="background-color: white">
+    <div class="container py-5">  
         <div class="row">
-            <div class="col-lg-6">                
-                <ul >
-                    @for(workout of workouts; track workout) {
-                        <li class="card mb-4" ><a  routerLink="/workouts/{{workout.id}}">Workout {{ workout.date }}</a></li>
-                    }
-                </ul>
+            <div class="col-lg-12">
+                <div>
+                    <div class="card-body text-center">
+                        <h2 class="my-3">Перейти к тренировкам</h2>
+                    </div>
+
+                    <div class="card-body text-center">
+                        <a class="site-btn" routerLink="/workouts" >Начать редкатирование</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-
+  
 <!-- Footer section -->
 <footer class="footer-section set-bg" style="background-color: black;">
     <div class="container">

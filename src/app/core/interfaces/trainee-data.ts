@@ -8,9 +8,10 @@ export interface TraineeData {
     email: string,
     phoneNumber: string | null,
     sex: number,
+    password: string,
     countOfTrainsInWeek: number,
     isActive: boolean,
     trainerId: number,
-    trainer: TrainerData,
+    trainer: TrainerData | null,
     workouts: WorkoutData[]
 }

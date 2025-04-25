@@ -6,11 +6,7 @@
             <div class="col-lg-12">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        @if (!this.isTrainer){
-                            <h2 class="my-3">Ваши тренировки!</h2>
-                        } @else {
-                            <h2 class="my-3">Тренировки ученика {{ this.trainee?.surname }} {{this.trainee?.name }}</h2>
-                        }
+                        <h2 class="my-3">Ваши ученики!</h2>
                     </div>
                 </div>
             </div>
@@ -19,8 +15,8 @@
         <div class="row">
             <div class="col-lg-6">                
                 <ul >
-                    @for(workout of workouts; track workout) {
-                        <li class="card mb-4" ><a  routerLink="/workouts/{{workout.id}}">Workout {{ workout.date }}</a></li>
+                    @for(trainee of trainees; track trainee) {
+                        <li class="card mb-4" ><a  routerLink="/trainees/{{trainee.id}}">Ученик {{ trainee.surname }} {{trainee.name }}</a></li>
                     }
                 </ul>
             </div>

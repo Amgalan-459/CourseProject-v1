@@ -90,11 +90,29 @@ p{
   color: var(--light-color);
 }
 
+.sigh-in-button{
+  border: .125em solid var(--gray-color);
+  min-width: 9em;
+  padding: 0 1em;
+}
+.sigh-in-button:hover{
+  background: var(--gray-color);
+  color: var(--light-color);
+}
+
+a{
+  text-decoration: none;
+  color: var(--dark-color);
+  transition: .25s;
+}
+a:hover{
+  color: var(--gray-color);
+}
+
 .type-button{
   margin-top: 1.5em;
 }
 .type-button:after{
-  content: " ▬";
   margin-left: .5em;
   vertical-align: .0715em;
 }
