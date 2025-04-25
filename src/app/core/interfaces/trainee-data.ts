@@ -12,6 +12,6 @@ export interface TraineeData {
     countOfTrainsInWeek: number,
     isActive: boolean,
     trainerId: number,
-    trainer: TrainerData,
+    trainer: TrainerData | null,
     workouts: WorkoutData[]
 }
