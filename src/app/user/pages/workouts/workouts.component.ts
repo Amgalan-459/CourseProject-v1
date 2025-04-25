@@ -17,12 +17,6 @@ import { StorageService } from '../../../core/services/storage.service';
 })
 export class WorkoutsComponent {
   workouts: WorkoutData[] = [];
-  // constructor (private httpTrainee: TraineeService, private httpWorkout: WorkoutService) {
-  //   this.httpTrainee.getTraineeById(1).then(res => {
-  //     this.trainee = res
-  //     this.httpWorkout.getWorkoutsByTraineeId(res.id).then(res => this.workouts = res);
-  //   });    
-  // }
   trainee: TraineeData | null = null;
   trainer: TrainerData | null = null;
   isLoggedIn = false;

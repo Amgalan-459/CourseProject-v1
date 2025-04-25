@@ -9,6 +9,7 @@ import { HelpComponent } from './user/pages/help/help.component';
 import { WorkoutComponent } from './user/pages/workout/workout.component';
 import { TraineesComponent } from './user/pages/trainees/trainees.component';
 import { TraineeComponent } from './user/pages/trainee/trainee.component';
+import { ForgotpasswordComponent } from './user/pages/auth/forgotpassword/forgotpassword.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'workouts/:id', component: WorkoutComponent },
     { path: 'trainees', component: TraineesComponent },
     { path: 'trainees/:traineeId', component: TraineeComponent },
+    { path: 'auth/forgotPass', component: ForgotpasswordComponent },
     { path: 'help', component: HelpComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', redirectTo: 'home' }

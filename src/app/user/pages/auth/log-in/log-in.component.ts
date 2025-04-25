@@ -3,10 +3,11 @@ import { TraineeService } from '../../../../core/services/trainee.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StorageService } from '../../../../core/services/storage.service';
 import { TrainerService } from '../../../../core/services/trainer.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, RouterLink],
   // templateUrl: './log-in.component.html',
   template: `
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
@@ -34,7 +35,7 @@ import { TrainerService } from '../../../../core/services/trainer.service';
           </div>
 
           <button class="btn btn-primary btn-large btn-block" [disabled]="loginForm.invalid">login</button>
-          <a class="login-link" href="#">Lost your password?</a>
+          <a class="login-link" routerLink="/auth/forgotPass">Lost your password?</a>
         </form>
       </div>
     </div>
@@ -77,6 +78,12 @@ export class LogInComponent {
           return;
         }
         if (res.password == this.loginForm.value.password) {
+          if (!res.isActive) {
+            this.isLoginFailed = true;
+            alert("логин или пароль не верны");
+            window.location.replace("/auth/logIn");
+            return;
+          }
           this.storageService.saveUser(res, true);
           this.isLoggedIn = true;
           window.location.replace("/");
