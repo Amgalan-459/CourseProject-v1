@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WorkoutService } from '../../../core/services/workout.service';
 import { WorkoutData } from '../../../core/interfaces/workout-data';
@@ -7,6 +7,8 @@ import { ExerciseData } from '../../../core/interfaces/exercise-data';
 import { StorageService } from '../../../core/services/storage.service';
 import { TraineeData } from '../../../core/interfaces/trainee-data';
 import { TrainerData } from '../../../core/interfaces/trainer-data';
+import { ExerciseRawData } from '../../../core/interfaces/exercise-raw-data';
+import { ExerciseRawService } from '../../../core/services/exercise-raw.service';
 
 @Component({
   selector: 'app-workout',
@@ -23,7 +25,10 @@ export class WorkoutComponent {
   isTrainer = false;
   trainee: TraineeData | null = null;
   trainer: TrainerData | null = null;
-  constructor(private activatedRoute: ActivatedRoute, private httpWorkout: WorkoutService, private httpExercise: ExerciseService, storageService: StorageService) {
+  exercisesraw: ExerciseRawData[] = [];
+  constructor(private activatedRoute: ActivatedRoute, private httpWorkout: WorkoutService, private httpExercise: ExerciseService, storageService: StorageService,
+      private httpExerciseRaw: ExerciseRawService
+  ) {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (storageService.isLoggedIn()) {
       this.isLoggedIn = true;
@@ -43,6 +48,9 @@ export class WorkoutComponent {
           this.httpExercise.getExercisesByWorkoutId(this.workout!.id).then(res => {
             this.exercises = res
           });
+        });
+        httpExerciseRaw.getAllExerciseRaws().then(res =>{
+          this.exercisesraw = res;
         });
       }
       else {
@@ -97,13 +105,13 @@ export class WorkoutComponent {
   onChangeWeightF(exerciseId: number, index: number, $event: Event) {
     let value = ($event.target as HTMLInputElement).value
     let weightF = []
-    let exercises = this.exercises.find(ex => ex.id == exerciseId)!;
-    for (let i = 0; i < exercises.weightPlan.length; i++) {
+    let exercise = this.exercises.find(ex => ex.id == exerciseId)!;
+    for (let i = 0; i < exercise.weightPlan.length; i++) {
       if (i == index){
         weightF.push(Number(value))
       }
       else {
-        weightF.push(exercises.repFact[i])
+        weightF.push(exercise.weightFact[i])
       }
     }
     this.exercises.map(ex => {
@@ -124,7 +132,7 @@ export class WorkoutComponent {
         repP.push(Number(value))
       }
       else {
-        repP.push(exercises.repFact[i])
+        repP.push(exercises.repPlan[i])
       }
     }
     this.exercises.map(ex => {
@@ -144,22 +152,12 @@ export class WorkoutComponent {
         weightP.push(Number(value))
       }
       else {
-        weightP.push(exercises.repFact[i])
+        weightP.push(exercises.weightPlan[i])
       }
     }
     this.exercises.map(ex => {
       if (ex.id == exerciseId) {
         ex.weightPlan = weightP
-      }
-      return ex;
-    });
-  }
-
-  onChangeVideoUrl(exerciseId: number, $event: Event) {
-    let value = ($event.target as HTMLInputElement).value
-    this.exercises.map(ex => {
-      if (ex.id == exerciseId) {
-        ex.videoUrl = value
       }
       return ex;
     });
@@ -175,13 +173,18 @@ export class WorkoutComponent {
     });
   }
 
+  selectedExRaw: ExerciseRawData | null = null
   onChangeName(exerciseId: number, $event: Event) {
     let value = ($event.target as HTMLInputElement).value
-    this.exercises.map(ex => {
-      if (ex.id == exerciseId) {
-        ex.name = value
-      }
-      return ex;
-    });
+    this.httpExerciseRaw.getExerciseRawById(Number(value)).then(res => {
+      this.selectedExRaw = res      
+      this.exercises.map(ex => {
+        if (ex.id == exerciseId) {
+          ex.name = this.selectedExRaw!?.name
+          ex.videoUrl = this.selectedExRaw!?.exerciseUrl
+        }
+        return ex;
+      });
+    })
   }
 }
