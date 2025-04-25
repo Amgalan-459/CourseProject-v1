@@ -1,31 +1,31 @@
 import { Component } from '@angular/core';
-import { TraineeService } from '../../../core/services/trainee.service';
 import { TraineeData } from '../../../core/interfaces/trainee-data';
 import { TrainerData } from '../../../core/interfaces/trainer-data';
-import { WorkoutService } from '../../../core/services/workout.service';
-import { TrainerService } from '../../../core/services/trainer.service';
+import { TraineeService } from '../../../core/services/trainee.service';
 import { StorageService } from '../../../core/services/storage.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-profile',
-  imports: [],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  selector: 'app-trainees',
+  imports: [RouterLink],
+  templateUrl: './trainees.component.html',
+  styleUrl: './trainees.component.css'
 })
-export class ProfileComponent {
-  trainee: TraineeData | null = null;
+export class TraineesComponent {
+  trainees: TraineeData[] | null = null;
   trainer: TrainerData | null = null;
   isLoggedIn = false;
   isTrainer = false;
-  constructor (private httpTrainee: TraineeService, private httpWorkout: WorkoutService, private httpTrainer: TrainerService, storageService: StorageService) {
+  constructor (private httpTrainee: TraineeService, storageService: StorageService) {
     if (storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       if (storageService.getIsTrainer()){
         this.isTrainer = true
         this.trainer = storageService.getUser() as TrainerData
+        this.httpTrainee.getTraineesByTrainerId(this.trainer.id).then(res => this.trainees = res);
       }
       else {
-        this.trainee = storageService.getUser() as TraineeData
+        window.location.replace("/home");
       }
     }
     else {

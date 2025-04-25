@@ -19,6 +19,10 @@ export class TrainerService {
     return await firstValueFrom( this.http.get<TrainerData>(environment.apiUrl + '/api/trainer/' + id) ); 
   }
 
+  async getTrainerByEmail(email: string) : Promise<TrainerData> {
+    return await firstValueFrom( this.http.get<TrainerData>(environment.apiUrl + '/api/trainer/' + email) ); 
+  }
+
   async postTrainer(trainer: TrainerData) : Promise<TrainerData> {
     return await firstValueFrom( this.http.post<TrainerData>(environment.apiUrl + '/api/trainer', trainer) ); 
   }

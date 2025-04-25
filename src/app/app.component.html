@@ -3,15 +3,26 @@
     <h1 class="logo"><a class="logo-link" routerLink="/home">Dsign</a></h1>
     <ul class="header-menu flex-container">
       <li><a class="header-menu-link" routerLink="/home">Home</a></li>
-      <li><a class="header-menu-link" routerLink="/workouts">Workouts</a></li>
+      @if(this.isTrainer) {
+        <li><a class="header-menu-link" routerLink="/trainees">Trainees</a></li>
+      } @else {
+        <li><a class="header-menu-link" routerLink="/workouts">Workouts</a></li>
+      }
       <li><a class="header-menu-link" routerLink="/aboutUs">About us</a></li>
       <li><a class="header-menu-link" routerLink="/help">Help</a></li>
     </ul>
     <!-- <button class="ghost-button">Subscribe</button> -->
-    <div>
-      <button class="ghost-button sigh-in-button"><a routerLink="/auth/logIn">Log in</a></button>
-      <button class="type-button"><a routerLink="/auth/signUp">Sign up</a></button>
-    </div>
+     @if (!this.isLoggedIn) {
+        <div>
+          <button class="ghost-button sigh-in-button"><a routerLink="/auth/logIn">Log in</a></button>
+          <button class="type-button"><a routerLink="/auth/signUp">Sign up</a></button>
+        </div>
+      } @else {
+        <div>
+          <p> <a routerLink="/profile"> Hello, {{ this.user?.name }} </a></p>
+          <button class="ghost-button sigh-in-button" (click)="logOut()">Log out</button>
+        </div>
+      }
   </nav>
 </header>
 

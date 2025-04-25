@@ -10,7 +10,7 @@ ul{
 }
 
 .url{
-    max-width: 200px;
+    max-width: 300px;
     text-wrap: wrap;
     word-wrap: break-word;
     width: 20vh;
@@ -20,4 +20,17 @@ input {
     border: none;
     background: none;
     outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .url {
+        max-width: 120px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .url {
+        max-width: 200px;
+    }
+    
 }

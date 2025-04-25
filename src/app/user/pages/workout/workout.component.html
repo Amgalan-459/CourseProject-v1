@@ -33,8 +33,10 @@
                             <tr>
                                 <td rowspan="2" class="text-fact">факт</td>
                                 <td>кг</td>
-                                @for (weightF of exercise.weightFact; track weightF) {
-                                    <td> {{ weightF }}</td>
+                                @for (weightF of exercise.weightFact; track $index) {
+                                    <td> 
+                                        <input type="text" value="{{weightF}}" class="form-control" (change)="onChangeWeight(exercise.id, $index, $event)">
+                                    </td>
                                 }
                             </tr>
                             <tr>
