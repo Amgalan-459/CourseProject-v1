@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { TraineeService } from '../../../core/services/trainee.service';
 import { WorkoutService } from '../../../core/services/workout.service';
 import { TraineeData } from '../../../core/interfaces/trainee-data';
@@ -7,6 +7,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TrainerData } from '../../../core/interfaces/trainer-data';
 import { TrainerService } from '../../../core/services/trainer.service';
 import { StorageService } from '../../../core/services/storage.service';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -43,5 +44,22 @@ export class WorkoutsComponent {
     }
   }
 
+  async addWorkout(){
+    let workout = {
+      id: 0,
+      date: this.getDateNow(),
+      traineeId: this.traineeId,
+      trainee: null,
+      exercises: []
+    }
 
+    console.log(workout)
+    await this.httpWorkout.postWorkout(workout as WorkoutData);
+    window.location.reload();
+  }
+
+  getDateNow() {
+    let pipe = new DatePipe("en-US");
+    return pipe.transform(new Date(), 'yyyy-MM-dd')
+  }
 }

@@ -20,10 +20,14 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    afterNextRender(() => 
-      this.getUser(),
-    {injector: this.injector, phase: AfterRenderPhase.Read}
-    );
+    // afterNextRender(() => 
+    //   this.getUser(),
+    // {injector: this.injector, phase: AfterRenderPhase.Read}
+    // );
+  }
+
+  ngAfterViewInit() {
+    this.getUser();
   }
 
   getUser() {

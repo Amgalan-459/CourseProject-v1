@@ -25,6 +25,13 @@
                 </ul>
             </div>
         </div>
+        @if (isTrainer){
+            <div class="row">
+                <div class="container text-center">
+                    <button class="btn btn-secondary" (click)="addWorkout()">Добавить тренировку</button>
+                </div>
+            </div>
+        }
     </div>
 </section>
 

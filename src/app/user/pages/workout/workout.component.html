@@ -78,11 +78,16 @@
                             <tr>
                                 <th>Описание</th>
                                 @if (this.isTrainer){                                    
-                                    <th colspan="8">
+                                    <th [colSpan]="exercise.repPlan.length + 1">
                                         <input type="text" value="{{ exercise.description }}" class="form-control" (change)="onChangeDescription(exercise.id, $event)">
                                     </th>
                                 } @else {
-                                    <th colspan="8">{{ exercise.description }}</th>
+                                    <th [colSpan]="exercise.repPlan.length + 2">{{ exercise.description }}</th>
+                                }
+                                @if (isTrainer){
+                                    <th>
+                                        <button class="btn-close" (click)="deleteExercise($index)"></button>
+                                    </th>
                                 }
                             </tr>
                         </tfoot>
@@ -90,6 +95,11 @@
                 </li>
             }
         </ul>
+    </div>
+    <div class="row">
+        <div class="container text-center">
+            <button class="btn btn-secondary" (click)="createExercise()">Добавить упражнение</button>
+        </div>
     </div>
     <div class="row">
         <div class="container text-center">            

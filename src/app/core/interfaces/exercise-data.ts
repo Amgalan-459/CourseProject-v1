@@ -10,5 +10,5 @@ export interface ExerciseData {
     videoUrl: string,
     description: string,
     workoutId: number,
-    workout: WorkoutData
+    workout: WorkoutData | null
 }
