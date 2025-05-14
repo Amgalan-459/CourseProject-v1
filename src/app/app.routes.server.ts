@@ -3,11 +3,11 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 export const serverRoutes: ServerRoute[] = [
   {
     path: 'workouts/:id',
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Client
   },
   {
     path: 'trainees/:traineeId',
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Client
   },
   {
     path: '**',
