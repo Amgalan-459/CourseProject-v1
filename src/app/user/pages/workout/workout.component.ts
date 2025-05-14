@@ -82,6 +82,32 @@ export class WorkoutComponent {
     alert("Изменения сохранены");
   }
 
+  async createExercise() {
+    let exercise = {
+      id: 0,
+      name: "",
+      weightPlan: [0, 0, 0, 0, 0],
+      repPlan: [0, 0, 0, 0, 0],
+      weightFact: [0, 0, 0, 0, 0],
+      repFact: [0, 0, 0, 0, 0],
+      videoUrl: "#",
+      description: "none",
+      workoutId: this.id,
+      workout: null
+    }
+
+    await this.httpExercise.postExercise(exercise as ExerciseData)
+    this.saveChanges()
+    window.location.reload();
+  }
+
+  async deleteExercise(index: number) {
+    let exId = this.exercises[index].id
+    await this.httpExercise.deleteExercise(exId);
+    window.location.reload();
+  }
+
+
   onChangeRepF(exerciseId: number, index: number, $event: Event) {
     let value = ($event.target as HTMLInputElement).value
     let repF = []
